@@ -24,6 +24,13 @@ def afficher_graphe(graphe: np.ndarray, canvas: tk.Canvas):
     for nom, coords in points.items():
         canvas.create_oval(coords[0], coords[1], coords[0]+10, coords[1]+10, outline="white", fill="white")
         canvas.create_text(coords[0], coords[1]-10, text=nom, font=("Arial", 12), fill="white")
+
+    for lignes in range(graphe.shape[0]):
+        for collones in range(graphe.shape[0]):
+            if graphe[:, :, 0][lignes][collones] == 1:
+                canvas.create_line(points[chr(97+lignes)][0]+5, points[chr(97+lignes)][1]+5, points[chr(97+collones)][0]+5, points[chr(97+collones)][1]+5, fill="white")
+
+
     
 
 def resoudre_graphe(graphe: np.ndarray): # Not Implemented

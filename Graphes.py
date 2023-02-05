@@ -24,8 +24,6 @@ validation.grid(row=2, column=0)
 
 
 
-
-
 canvas.grid(row=0, column=0)
 
 root.mainloop()
