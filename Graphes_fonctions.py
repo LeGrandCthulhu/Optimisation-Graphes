@@ -1,6 +1,5 @@
 import numpy as np
 import tkinter as tk
-import math as m
 import random as rd
 
 center_x = lambda x0, x1: (x0 + x1) / 2
@@ -17,11 +16,14 @@ def generer_graphe(noeuds: int):
 
     return graphe
 
-def afficher_graphe(graphe: np.ndarray): 
+def afficher_graphe(graphe: np.ndarray, canvas: tk.Canvas): 
 
     # Placer les points
     points = {chr(97+i): [rd.randint(0, 1450), rd.randint(0, 450)] for i in range(graphe.shape[0])} # This Madness
-    print(points)
+    
+    for nom, coords in points.items():
+        canvas.create_oval(coords[0], coords[1], coords[0]+10, coords[1]+10, outline="white", fill="white")
+        canvas.create_text(coords[0], coords[1]-10, text=nom, font=("Arial", 12), fill="white")
     
 
 def resoudre_graphe(graphe: np.ndarray): # Not Implemented
@@ -31,9 +33,10 @@ def afficher_graphe_r(graphe_resolu: np.ndarray): # Not Implemented
     pass
 
 def on_click(noeuds: int, canvas: tk.Canvas):
+    canvas.delete("all")
     G = generer_graphe(noeuds)
     afficher_graphe(G, canvas)
     #G_r = resoudre_graphe(G)
     #afficher_graphe_r(G_r)
 
-afficher_graphe(generer_graphe(7))
+
